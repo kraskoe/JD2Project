@@ -13,13 +13,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @ContextConfiguration("/test_spring_data.xml")
 public class UserCrudTest {
     @Autowired
-    UserJpaRepository userRepository;
+    private UserJpaRepository userRepository;
 
     @Before
     public void init() {
-        userRepository.save(new User(null, "Name1", "Surname1", "+375445772990", "Pushkina, 12-180", "email1@gmail.com", "123", "User"));
-        userRepository.save(new User(null, "Name2", "Surname2", "+375445772990", "Pushkina, 12-180", "email2@gmail.com", "123", "User"));
-        userRepository.save(new User(null, "Name2", "Surname3", "+375445772990", "Pushkina, 12-180", "email3@gmail.com", "123", "User"));
+        userRepository.save(new User("Name1", "Surname1", "+375445772990", "Pushkina, 12-180", "email1@gmail.com", "123"));
+        userRepository.save(new User("Name2", "Surname2", "+375445772990", "Pushkina, 12-180", "email2@gmail.com", "123"));
+        userRepository.save(new User("Name2", "Surname3", "+375445772990", "Pushkina, 12-180", "email3@gmail.com", "123"));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class UserCrudTest {
         user.setAddress("Svalka, korobka #5");
         userRepository.save(user);
         System.out.println(user);
-        User newUser = userRepository.save(new User(null, "NewUser", "SomeSName", "+375445772990", "Pushkina, 12-180", "email4@gmail.com", "123", "User"));
+        User newUser = userRepository.save(new User("NewUser", "SomeSName", "+375445772990", "Pushkina, 12-180", "email4@gmail.com", "123"));
         userRepository.delete(newUser);
     }
 }

@@ -7,7 +7,9 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -51,6 +53,18 @@ public class User {
 
     @Column(name="TYPE", length=10, nullable = false)
     private String type = UserType.USER.getType();
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL , orphanRemoval = true)
+    private List<Order> orders = new ArrayList<>();
+
+    public User(String name, String surname, String phone, String address, String email, String password){
+        this.name = name;
+        this.surname = surname;
+        this.phone = phone;
+        this.address = address;
+        this.email = email;
+        this.password = password;
+    }
 
     @Override
     public boolean equals(Object o) {

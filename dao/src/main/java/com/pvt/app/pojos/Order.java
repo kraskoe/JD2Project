@@ -23,24 +23,35 @@ import java.util.List;
 @Entity
 @Table(name = "ORDERS")
 public class Order {
+    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "ORDER_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
     @CreationTimestamp
-    @Column(updatable = false)
+    @Column(name = "ORDER_RECEIVED", updatable = false)
     private LocalDateTime creationTime;
 
-    @Column(insertable = false)
+    @Column(name = "ORDER_CONFIRMED", insertable = false)
     private LocalDateTime confirmationTime;
 
-    @Column(insertable = false)
+    @Column(name = "ORDER_DELIVERED", insertable = false)
     private LocalDateTime deliveryTime;
 
-    @Column(name="STATUS", length=10, unique=true, nullable=false)
+    @Column(name="STATUS", length=10, nullable=false)
     private String status = OrderStatus.RECEIVED.getStatus();
 
-    @OneToMany(mappedBy = "order")
+    @ElementCollection
+    @CollectionTable(name = "ORDERS_PRODUCTS",
+            joinColumns = @JoinColumn(name = "PRODUCT_ID"))
     private List<Product> products = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private User user;
+
+    public Order(User user){
+        this.user = user;
+    }
 }

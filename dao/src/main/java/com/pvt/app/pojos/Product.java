@@ -17,7 +17,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "PRODUCTS")
 public class Product {
-    private static final long serialVersionUID = 1l;
+    private static final long serialVersionUID = 1L;
     @Id
     @Column(name = "PRODUCT_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,10 +29,6 @@ public class Product {
     @Column(name = "PRICE")
     private Double price;
 
-    @OneToOne(mappedBy = "product", cascade = CascadeType.ALL)
-    private ProductDetails details;
-
-    @ManyToOne
-    @JoinColumn(name = "ORDER_ID")
-    private Order order;
+    @Column(name = "DETAILS")
+    private String details;
 }
