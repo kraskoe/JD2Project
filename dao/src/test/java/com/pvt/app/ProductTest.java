@@ -5,7 +5,7 @@ import com.pvt.app.pojos.Product;
 import com.pvt.app.pojos.User;
 import com.pvt.app.repositories.OrderPagingRepository;
 import com.pvt.app.repositories.ProductPagingRepository;
-import com.pvt.app.repositories.UserJpaRepository;
+import com.pvt.app.repositories.UserPagingRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,16 +16,15 @@ import org.springframework.data.domain.Sort;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration("/test_spring_data.xml")
+@ContextConfiguration("/jd2_test_dao.xml")
 public class ProductTest {
     @Autowired
-    private UserJpaRepository userRepository;
+    private UserPagingRepository userRepository;
     @Autowired
     private ProductPagingRepository productRepository;
     @Autowired
@@ -61,5 +60,10 @@ public class ProductTest {
         System.out.println("<------------------------------------>");
         User user = userRepository.findById(1).orElse(null);
         user.getOrders().get(1).getProducts().forEach(System.out::println);
+        List<Order> orders = orderRepository.findByUserId(1);
+        for (Order o: orders) {
+            System.out.println(o.getStat());
+        }
+        orderRepository.getByUserId(1).forEach(System.out::println);
     }
 }

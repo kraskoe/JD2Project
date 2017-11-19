@@ -1,0 +1,46 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:s="http://www.springframework.org/tags/form"
+          xmlns:spring="http://www.springframework.org/tags" xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+   <script type="text/javascript">
+      var restUrl = '${pageContext.request.contextPath}/products';
+   </script>
+   <div style="font-size: large">
+      <c:if test="${not empty message}">INFO : ${message}</c:if> <br/>
+   </div>
+   <div>
+      <spring:message code="product.table.header"/>
+      <div class = "productTable">
+         <c:forEach var="product" items="${products}" varStatus="status">
+            <div id="${product.id}">${product.name}  ${product.details}  ${product.price}</div>
+         </c:forEach>
+      </div>
+   </div>
+   <br/>
+   <c:url var="formUrl" value="/products" />
+   <s:form id="productForm" name="product" action="${formUrl}" modelAttribute="product" method="post" enctype="multipart/form-data">
+      <fieldset>
+         <label for="name">Product Name </label>
+         <s:errors path="name" cssStyle="color: red" />
+         <s:input id="name" type="text" value="" maxlength="20" path="name" placeholder="Product Name"/><br/>
+         <label for="details">Details </label>
+         <s:errors path="details" cssStyle="color: red" />
+         <s:input id="details" type="text" value="" maxlength="20" path="details" placeholder="Details"/><br/>
+         <label for="price">Price </label>
+         <s:errors path="price" cssStyle="color: red" />
+         <s:input id="price" type="text" path="price" value="" maxlength="10" placeholder="Price"/><br/>
+         <label for="id">Id </label>
+         <s:input id="id" type="text" path="id" value="" maxlength="3"/><br/>
+         <input id="productUpdate" type="button" value="Update Product"/>
+         <input id="productAdd" type="button" value="Add Product"/>
+         <input id="productDelete" type="button" value="Delete Product"/>
+      </fieldset>
+      <tr>
+         <th><label>Product image:</label></th>
+         <td><input name="avatar" type="file"/></td>
+      </tr>
+      <input id="productButton" type="submit" value="Add Product by Submit form"/>
+      <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}"><jsp:text/></input>
+   </s:form>
+
+</jsp:root>
+

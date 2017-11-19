@@ -40,14 +40,14 @@ public class Order {
     private LocalDateTime deliveryTime;
 
     @Column(name="STATUS", length=10, nullable=false)
-    private String status = OrderStatus.RECEIVED.getStatus();
+    private String stat = OrderStatus.RECEIVED.getStatus();
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.LAZY)
     @CollectionTable(name = "ORDERS_PRODUCTS",
-            joinColumns = @JoinColumn(name = "PRODUCT_ID"))
+            joinColumns = @JoinColumn(name = "ORDER_ID"))
     private List<Product> products = new ArrayList<>();
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "USER_ID")
     private User user;
 

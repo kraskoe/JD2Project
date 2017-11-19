@@ -1,0 +1,30 @@
+<jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"
+          xmlns:c="http://java.sun.com/jsp/jstl/core"
+          xmlns:s="http://www.springframework.org/tags/form"
+          xmlns="http://www.w3.org/1999/xhtml" version="2.0">
+    Main user page
+
+    <div>
+        Users :
+        <c:if test="${empty users}">EMPTY</c:if> <br/>
+
+        <c:forEach var="user1" items="${users}" varStatus="status">
+            <br/>${status.count}. Name : ${user1.name} Surname: ${user1.surname}
+        </c:forEach>
+    </div>
+
+    <div>
+        <input id="addUser" type="button" value="Add user"/>
+    </div>
+    <br/>
+    <s:form id="userForm" name="user" action="" style="display: none" modelAttribute="user" method="post">
+        <fieldset>
+            <label for="name">User Name</label>
+            <s:input id="name" type="text" value="" maxlength="20" path="name"/><br/>
+            <label for="name">Surname</label>
+            <s:input id="name" type="text" value="" maxlength="20" path="surname" placeholder="User Surname"/><br/>
+            <s:input id="userId" type="hidden" path="id" value="" maxlength="3"/><br/>
+            <input id="userButton" type="submit" value=""/>
+        </fieldset>
+    </s:form>
+</jsp:root>

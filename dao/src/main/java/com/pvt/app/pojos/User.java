@@ -4,6 +4,7 @@ import com.pvt.app.enums.UserType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -19,6 +20,7 @@ import java.util.Set;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 @Entity
+@ToString(exclude = "orders")
 @Table(name = "USERS")
 public class User {
     private static final long serialVersionUID = 1L;
@@ -84,8 +86,8 @@ public class User {
         return id != null ? id.hashCode() : 0;
     }
 
-    @Override
-    public String toString() {
-        return "User : id: " + id + " Name: " + name + " Surname: " + surname;
-    }
+//    @Override
+//    public String toString() {
+//        return "User : id: " + id + " Name: " + name + " Surname: " + surname;
+//    }
 }

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns:jsp="http://java.sun.com/JSP/Page"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:tiles="http://tiles.apache.org/tags-tiles">
+
+<jsp:output doctype-public="-//W3C//DTD XHTML 1.1//EN"
+            doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"
+            doctype-root-element="html" omit-xml-declaration="false"/>
+<jsp:directive.page pageEncoding="UTF-8" contentType="text/html; UTF-8"/>
+<head>
+    <![CDATA[
+    <script src="/assests/js/jquery-1.11.1.min.js" type="text/javascript"><jsp:text/></script>
+    <script src="/assests/js/utils.js" type="text/javascript"><jsp:text/></script>
+    ]]>
+    <title>Login Page</title>
+</head>
+<body>
+<form method="post" class="signin" action="/mvc/j_spring_security_check">
+    <fieldset>
+        <div>
+            <label for="username_or_email">Email</label>
+            <input class="text" id="username_or_email" name="j_username" placeholder="Email"
+                   type="text" style="height:24px;width:140px;margin:10px;"/> <!-- Поле ввода имени пользователя -->
+            <br/>
+            <label for="password">Password</label>
+            <input class="text" id="password" name="j_password" placeholder="Password"
+                   type="password" style="height:24px;width:140px;margin:10px;"/> <!-- Поле ввода пароля -->
+            <!--<br/><small><a href="/user/resend_password">Forgot?</a></small>-->
+
+            <br/>
+            <input type="submit" value="Submit"/>
+        </div>
+    </fieldset>
+</form>
+
+</body>
+</html>
