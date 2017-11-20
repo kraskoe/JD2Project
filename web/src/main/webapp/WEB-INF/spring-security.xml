@@ -11,8 +11,10 @@
 		<intercept-url pattern="/" access="permitAll"/>
 		<intercept-url pattern="/products" access="permitAll"/>
 		<intercept-url pattern="/orders/**" access="hasAnyRole('USER', 'ROLE_ADMIN', 'ROLE_GRAND_USER')"/>
+		<intercept-url pattern="/editproducts/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_GRAND_USER')"/>
 		<intercept-url pattern="/users/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_GRAND_USER')"/>
-		<!--<logout invalidate-session="true" logout-url="logout" logout-success-url="/login"/>-->
+		<intercept-url pattern="/userorders/**" access="hasAnyRole('ROLE_ADMIN', 'ROLE_GRAND_USER')"/>
+		<logout invalidate-session="true" logout-url="logout" logout-success-url="/login"/>
 		<form-login login-page="/login"
 					username-parameter="login"
 					password-parameter="password"

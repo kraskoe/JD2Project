@@ -49,8 +49,8 @@ public class User {
     private String email;
 
     @Column(name = "PASSWORD", nullable = false)
-    @Max(value = 30, message = "Max password length should be less then 30 characters")
-    @Min(value = 6, message = "Min password length should be greater then 6 characters")
+//    @Max(value = 30, message = "Max password length should be less then 30 characters")
+//    @Min(value = 6, message = "Min password length should be greater then 6 characters")
     private String password;
 
     @Column(name="TYPE", length=10, nullable = false)

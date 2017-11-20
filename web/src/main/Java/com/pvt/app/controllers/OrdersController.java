@@ -14,7 +14,9 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -45,6 +47,21 @@ public class OrdersController {
         fillModel(map);
         return "orders/main";
     }
+
+//    @RequestMapping(value = "", method = RequestMethod.POST)
+//    public String addOrder(ModelMap model, HttpServletRequest req) {
+//        MvcUser mUser = (MvcUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        User user = userService.getByEmail(mUser.getUsername());
+//        List<String> parameterNames = new ArrayList<>(req.getParameterMap().keySet());
+//        for (String val:parameterNames) {
+//            System.out.println(val);
+//            if (val.matches("^\\d+$")){
+//                Integer i = new Integer(val);
+//                orderService.delete(i);
+//            }
+//        }
+//        return "redirect:orders";
+//    }
 
     private void fillModel(ModelMap model) {
         populatePageName(model);

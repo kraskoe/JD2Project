@@ -2,19 +2,20 @@
           xmlns:c="http://java.sun.com/jsp/jstl/core"  xmlns:s="http://www.springframework.org/tags/form"
           xmlns:spring="http://www.springframework.org/tags" xmlns="http://www.w3.org/1999/xhtml" version="2.0">
    <script type="text/javascript">
-      var postUrl = '${pageContext.request.contextPath}/orders';
+      var postUrl = '${pageContext.request.contextPath}/userorders';
    </script>
    <div style="font-size: large">
       <c:if test="${not empty message}">INFO : ${message}</c:if> <br/>
    </div>
    <div>
-      <c:url var="formUrl" value="/orders"/>
-      <s:form action="${formUrl}" method="post">
-         <c:forEach var="order" items="${orders}" varStatus="status">
-            <div><input type="checkbox" id="${order.id}" value="${order.id}">${order}</input></div>
-         </c:forEach>
-         <!--<input id="deleteOrdersButton" type="submit" value="Delete Checked Orders"/>-->
-      </s:form>
+      <c:forEach var="order" items="${orders}" varStatus="status">
+         <div><input type="checkbox" id="${order.id}" value="${order.id}">${order}</input></div>
+      </c:forEach>
+
+      <!--<c:url var="formUrl" value="/userorders"/>-->
+      <!---->
+      <!--<s:form action="${formUrl}" method="post">-->
+      <!--</s:form>-->
 
    </div>
    <br/>

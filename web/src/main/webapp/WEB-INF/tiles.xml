@@ -12,13 +12,25 @@
         <put-attribute name="title" value="Products"/>
         <put-attribute name="body" value="/WEB-INF/view/products/main.jspx"/>
     </definition>
-    <definition name="login" extends="default">
-        <put-attribute name="title" value="Login page"/>
-        <put-attribute name="body" value="/WEB-INF/view/welcome/login.jspx"/>
+    <definition name="products/edit" extends="default">
+        <put-attribute name="title" value="Edit Products"/>
+        <put-attribute name="body" value="/WEB-INF/view/products/edit.jspx"/>
     </definition>
+    <definition name="users/main" extends="default">
+        <put-attribute name="title" value="Edit Users"/>
+        <put-attribute name="body" value="/WEB-INF/view/users/main.jspx"/>
+    </definition>
+    <!--<definition name="login" extends="default">-->
+        <!--<put-attribute name="title" value="Login page"/>-->
+        <!--<put-attribute name="body" value="/WEB-INF/view/welcome/login.jspx"/>-->
+    <!--</definition>-->
     <definition name="orders/main" extends="default">
         <put-attribute name="title" value="Orders"/>
         <put-attribute name="body" value="/WEB-INF/view/orders/main.jspx"/>
+    </definition>
+    <definition name="userorders/main" extends="default">
+        <put-attribute name="title" value="User Orders"/>
+        <put-attribute name="body" value="/WEB-INF/view/orders/edit.jspx"/>
     </definition>
 </tiles-definitions>
 

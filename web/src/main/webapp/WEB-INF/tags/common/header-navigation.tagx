@@ -34,15 +34,36 @@
                             <li><a href="${pageContext.request.contextPath}/orders">${navName}</a></li>
                         </c:otherwise>
                     </c:choose>
-                    <c:set var="navName"><spring:message code="header.navigation.user"/></c:set>
-                    <c:choose>
-                        <c:when test="${currentPageName eq 'users'}">
-                            <li class="active"><a href="#">${navName}</a></li>
-                        </c:when>
-                        <c:otherwise>
-                            <li><a href="${pageContext.request.contextPath}/users">${navName}</a></li>
-                        </c:otherwise>
-                    </c:choose>
+
+                    <sec:authorize access="hasAnyRole('ADMIN', 'GRAND_USER')">
+                        <c:set var="navName"><spring:message code="header.navigation.pedit"/></c:set>
+                        <c:choose>
+                            <c:when test="${currentPageName eq 'editproducts'}">
+                                <li class="active"><a href="#">${navName}</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="${pageContext.request.contextPath}/editproducts">${navName}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:set var="navName"><spring:message code="header.navigation.oedit"/></c:set>
+                        <c:choose>
+                            <c:when test="${currentPageName eq 'userorders'}">
+                                <li class="active"><a href="#">${navName}</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="${pageContext.request.contextPath}/userorders">${navName}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                        <c:set var="navName"><spring:message code="header.navigation.user"/></c:set>
+                        <c:choose>
+                            <c:when test="${currentPageName eq 'users'}">
+                                <li class="active"><a href="#">${navName}</a></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li><a href="${pageContext.request.contextPath}/users">${navName}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </sec:authorize>
                     <c:set var="locale" value="${request.LOCALE.language}"/>
                     <c:if test="${locale eq 'en'}">
                         <li class="active"><a href="#"><spring:message code="header.locale.ru"/></a></li>
